@@ -14,7 +14,10 @@ export function useMicrofone() {
   const [erro, setErro] = useState<string | null>(null);
   const [baixando, setBaixando] = useState<number | null>(null);
   const ativo = useRef(true);
-  useEffect(() => () => { ativo.current = false; motorPorId(id).parar(); }, [id]);
+  useEffect(() => {
+    ativo.current = true;
+    return () => { ativo.current = false; motorPorId(id).parar(); };
+  }, [id]);
 
   const ouvir = useCallback(async (esperado: string, opcoes?: { longo?: boolean }): Promise<Avaliacao | null> => {
     setErro(null);

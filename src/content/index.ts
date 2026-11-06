@@ -58,6 +58,14 @@ UNIDADES_INTERMEDIARIO.forEach((u) => {
   u.dialogo.falas.forEach((f) => alimentar(f.en, f.fala));
 });
 
+const ipas = new Map<string, string>();
+TODAS_PALAVRAS.forEach((p) => { if (p.ipa && !p.en.includes(' ')) ipas.set(chave(p.en), p.ipa); });
+
+/** Símbolos fonéticos de uma palavra, quando ela existe no conteúdo. */
+export function ipaDe(palavra: string): string | undefined {
+  return ipas.get(chave(palavra));
+}
+
 export function falaDe(palavra: string): string {
   return dicionario.get(chave(palavra)) ?? '';
 }

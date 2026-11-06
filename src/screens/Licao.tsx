@@ -3,7 +3,7 @@ import { ttsNavegador } from '../engines/tts';
 import type { Item } from '../lib/licao';
 import { concluirLicao, registrarTentativa, xpDaNota } from '../lib/store';
 import { Icone } from '../ui/Icones';
-import { ExDialogo, ExDitado, ExEscolha, ExLembrar, ExRepetir } from './Exercicios';
+import { ExDialogo, ExDitado, ExEscolha, ExLembrar, ExRepetir, RodapeFala, type Rodape } from './Exercicios';
 import { ir } from '../ui/rotas';
 
 export function Licao({ titulo, itens, unidadeId }: { titulo: string; itens: Item[]; unidadeId?: string }) {
@@ -60,16 +60,18 @@ export function Licao({ titulo, itens, unidadeId }: { titulo: string; itens: Ite
 
   const aoAvaliar = (n: number) => setMelhor((m) => (m === null ? n : Math.max(m, n)));
 
-  const rodape = (mic: JSX.Element | null) => (
-    <div className="rodape-exercicio">
-      {mic}
-      {!mic && <div style={{ flex: 1 }} />}
-      <button className="botao principal" onClick={avancar} disabled={!podeContinuar && item.tipo === 'dialogo'}
-        style={{ minWidth: 132 }}>
-        {podeContinuar ? 'Continuar' : 'Pular'}
-      </button>
-    </div>
-  );
+  const rodape: Rodape = (cfg) =>
+    cfg ? (
+      <RodapeFala key={`${i}-${cfg.esperado}`} cfg={cfg} aoContinuar={avancar} />
+    ) : (
+      <div className="rodape-exercicio">
+        <div style={{ flex: 1 }} />
+        <button className="botao principal" onClick={avancar} disabled={!podeContinuar && item.tipo === 'dialogo'}
+          style={{ minWidth: 132 }}>
+          {podeContinuar ? 'Continuar' : 'Pular'}
+        </button>
+      </div>
+    );
 
   return (
     <div className="tela sem-barra">

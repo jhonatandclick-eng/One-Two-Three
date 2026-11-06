@@ -46,13 +46,43 @@ describe('Scorer', () => {
     expect(avaliar('Two coffees, please.', '2 coffees please').nota).toBe(100);
   });
 
-  it('usa a melhor alternativa do reconhecimento', () => {
+  it('usa a melhor alternativa, mas desconta quando ela não foi a 1ª opção', () => {
     const r = avaliar('juice', 'deuce', 'juice');
-    expect(r.nota).toBe(100);
+    expect(r.nota).toBe(80); // o app entendeu primeiro "deuce": pronúncia ambígua
+  });
+
+  it('nota graduada: palavra quase certa ganha nota parcial, não 0 nem 100', () => {
+    const r = avaliar('three', 'tree');
+    expect(r.nota).toBeGreaterThan(30);
+    expect(r.nota).toBeLessThan(80);
+  });
+
+  it('confiança baixa do reconhecimento diminui a nota', () => {
+    const clara = scorerLocal.avaliar('hello', [{ text: 'hello', confidence: 0.95 }]).nota;
+    const duvidosa = scorerLocal.avaliar('hello', [{ text: 'hello', confidence: 0.55 }]).nota;
+    expect(clara).toBe(100);
+    expect(duvidosa).toBeLessThan(80);
+    expect(duvidosa).toBeGreaterThan(60);
+  });
+
+  it('notas diferentes para erros diferentes', () => {
+    const notas = new Set([
+      avaliar('I would like an orange juice', 'I would like an orange juice').nota,
+      avaliar('I would like an orange juice', 'I would like a orange juice').nota,
+      avaliar('I would like an orange juice', 'I like an orange juice').nota,
+      avaliar('I would like an orange juice', 'I like orange shoes').nota,
+    ]);
+    expect(notas.size).toBe(4);
   });
 
   it('homófonos são aceitos', () => {
     expect(compararPalavra('two', 'to')).toBe('certa');
+    expect(compararPalavra('their', 'there')).toBe('certa');
+  });
+
+  it('"tree" no lugar de "three" (erro do th) não passa como certa', () => {
+    expect(compararPalavra('three', 'tree')).toBe('quase');
+    expect(compararPalavra('think', 'fink')).not.toBe('certa');
   });
 
   it('palavra totalmente diferente é errada', () => {
