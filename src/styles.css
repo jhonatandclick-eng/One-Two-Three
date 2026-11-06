@@ -235,6 +235,19 @@ button { font: inherit; color: inherit; }
 .escolha-plano { text-align: left; }
 .escolha-plano.marcado { border-color: var(--destaque); background: var(--destaque-suave); }
 
+/* Marca One Two Three */
+.marca { flex-shrink: 0; display: block; }
+.marca rect { fill: var(--destaque); }
+.marca .m1 { opacity: 0.35; }
+.marca .m2 { opacity: 0.65; }
+.logo { display: inline-flex; align-items: center; gap: 10px; }
+.logo-texto { font-size: 19px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.logo-texto .l1 { color: var(--texto2); }
+.logo-texto .l2 { color: var(--texto); }
+.logo-texto .l3 { color: var(--texto-destaque); }
+.boas-vindas { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
+.boas-vindas .grande { font-size: 34px; }
+
 .bloqueado { opacity: 0.7; }
 a { color: var(--texto-destaque); }
 .link { background: none; border: none; color: var(--texto-destaque); font-weight: 700; padding: 0; cursor: pointer; text-decoration: underline; min-height: 44px; }

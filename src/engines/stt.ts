@@ -50,16 +50,37 @@ function construtorRec(): (new () => Rec) | null {
 }
 
 let recAtual: Rec | null = null;
+let permissaoOk = false;
+
+/**
+ * Na primeira vez, o navegador pergunta se pode usar o microfone. Se o reconhecimento já estiver
+ * contando o tempo nessa hora, ele acaba antes de a pessoa falar. Por isso pedimos a permissão
+ * antes, esperamos a resposta e só depois começamos a ouvir.
+ */
+async function garantirPermissao(): Promise<void> {
+  if (permissaoOk || !navigator.mediaDevices?.getUserMedia) return;
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  stream.getTracks().forEach((t) => t.stop());
+  permissaoOk = true;
+  // Dá um respiro para o sistema liberar o microfone antes do reconhecimento pegar.
+  await new Promise((r) => setTimeout(r, 250));
+}
 
 export const sttWebSpeech: SttEngine = {
   id: 'webspeech',
   nome: 'Reconhecimento do navegador',
   disponivel: () => typeof window !== 'undefined' && !!construtorRec(),
-  ouvir(opcoes) {
+  async ouvir(opcoes) {
+    try {
+      await garantirPermissao();
+    } catch (e: any) {
+      throw new Error(e?.name === 'NotAllowedError' ? 'not-allowed' : String(e?.message || e));
+    }
+    if (recAtual) { try { recAtual.abort(); } catch { /* já tinha parado */ } recAtual = null; }
     return new Promise((resolve, reject) => {
       const C = construtorRec();
       if (!C) return reject(new Error('indisponivel'));
-      const rec = new C();
+      const rec = new C() as Rec & { onstart: (() => void) | null };
       recAtual = rec;
       rec.lang = 'en-US';
       rec.interimResults = false;
@@ -67,7 +88,11 @@ export const sttWebSpeech: SttEngine = {
       rec.continuous = !!opcoes?.continuo;
       let alternativas: Alternativa[] = [];
       let erro: string | null = null;
-      const timer = window.setTimeout(() => rec.stop(), opcoes?.maxMs ?? 12000);
+      // O tempo só começa a contar quando o reconhecimento realmente começou a ouvir.
+      let timer = 0;
+      const limite = () => { timer = window.setTimeout(() => rec.stop(), opcoes?.maxMs ?? 12000); };
+      rec.onstart = limite;
+      const reserva = window.setTimeout(() => { if (!timer) limite(); }, 3000);
       rec.onresult = (e: any) => {
         if (e.results.length > 1) {
           // Leitura longa: junta os trechos, usando a melhor opção de cada um.
@@ -88,6 +113,7 @@ export const sttWebSpeech: SttEngine = {
       };
       rec.onend = () => {
         window.clearTimeout(timer);
+        window.clearTimeout(reserva);
         recAtual = null;
         if (erro && erro !== 'no-speech' && erro !== 'aborted') reject(new Error(erro));
         else resolve({ alternativas });
@@ -96,6 +122,8 @@ export const sttWebSpeech: SttEngine = {
         rec.start();
       } catch (err) {
         window.clearTimeout(timer);
+        window.clearTimeout(reserva);
+        recAtual = null;
         reject(err);
       }
     });

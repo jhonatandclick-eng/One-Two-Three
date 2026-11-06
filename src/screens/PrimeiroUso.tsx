@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { UNIDADES_INICIANTE } from '../content';
 import { atualizar } from '../lib/store';
+import { Logo } from '../ui/Logo';
 import { Pronuncia } from '../ui/Pronuncia';
 import { ir } from '../ui/rotas';
 import { TestarMicrofone } from './Microfone';
@@ -19,8 +20,11 @@ export function PrimeiroUso() {
       </div>
       {passo === 0 && (
         <>
-          <h1>Fale inglês de verdade</h1>
-          <p className="secundario">Você ouve, repete e recebe uma nota na hora. Embaixo de cada palavra aparece como ela soa:</p>
+          <div className="boas-vindas">
+            <Logo />
+            <h1 className="grande">Ouça. Repita. Acerte.</h1>
+          </div>
+          <p className="secundario">Em três passos: você ouve, repete e recebe uma nota na hora. Embaixo de cada palavra aparece como ela soa:</p>
           <div className="cartao">
             <Pronuncia en="I would like an orange juice." fala={['ai', 'uud', 'laik', 'én', 'ó-rindj', 'djus']} />
             <p className="secundario pequeno">Eu gostaria de um suco de laranja.</p>

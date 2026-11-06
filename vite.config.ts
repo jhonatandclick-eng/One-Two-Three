@@ -13,8 +13,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Fala Inglês',
-        short_name: 'Fala Inglês',
+        name: 'One Two Three',
+        short_name: 'One Two Three',
         description: 'Aprenda a falar e ler inglês com nota de pronúncia.',
         lang: 'pt-BR',
         start_url: './',

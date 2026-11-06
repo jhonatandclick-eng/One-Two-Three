@@ -3,6 +3,7 @@ import { licaoAtual, intermediarioLiberado, mediaIniciante, revisoesVencidas } f
 import { opcao, semanaAtual } from '../lib/plan';
 import { sequencia, useEstado } from '../lib/store';
 import { Icone } from '../ui/Icones';
+import { Logo } from '../ui/Logo';
 import { ir } from '../ui/rotas';
 
 function saudacao() {
@@ -27,6 +28,7 @@ export function Inicio() {
 
   return (
     <div className="tela">
+      <Logo tamanho={24} />
       <div className="linha entre">
         <div className="coluna" style={{ gap: 2 }}>
           <span className="secundario">{saudacao()}!</span>
