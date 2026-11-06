@@ -191,6 +191,7 @@ button { font: inherit; color: inherit; }
   display: flex; align-items: center; gap: 12px;
 }
 
+.rodape-exercicio > .botao { white-space: nowrap; padding-left: 12px; padding-right: 12px; }
 .rodape-exercicio.coluna-rodape { flex-direction: column; align-items: stretch; gap: 8px; }
 .coluna-rodape > span { text-align: center; }
 .botao-fala {
@@ -204,6 +205,10 @@ button { font: inherit; color: inherit; }
 .botao-fala:focus-visible { outline: 3px solid var(--destaque); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .botao-fala.ouvindo { animation: none; } }
 .sons { gap: 10px; }
+.fones { display: flex; flex-wrap: wrap; gap: 6px; }
+.fone { flex-direction: column; gap: 0; padding: 6px 10px; border-radius: 12px; min-width: 52px; }
+.fone-nome { font-size: 15px; font-weight: 800; }
+.fone-nota { font-size: 12px; font-weight: 700; opacity: 0.85; }
 .som { border-top: 1px solid var(--linha); padding-top: 10px; display: flex; flex-direction: column; gap: 4px; }
 
 .opcao {

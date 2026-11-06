@@ -22,6 +22,8 @@ export interface Estado {
   novasPorDia: Record<string, number>;
   /** a pessoa fechou o aviso "copie seu progresso antes de usar pelo atalho" */
   dicaAtalhoOculta?: boolean;
+  /** avaliação som por som ligada (o modelo é baixado no aparelho) */
+  sons?: boolean;
 }
 
 /* ---------- Perfis (várias pessoas no mesmo aparelho, sem login) ---------- */

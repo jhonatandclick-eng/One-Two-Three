@@ -16,7 +16,13 @@ o progresso fica guardado só no aparelho.
 - Níveis: **Iniciante** (12 unidades, 144 palavras) → **Intermediário** (libera com média de 80%) → Avançado (em breve).
 - Backup: exportar e importar o progresso em Ajustes.
 
-A nota avalia se as palavras foram **entendidas**, não o sotaque fino.
+A nota leva em conta se as palavras foram entendidas e com que clareza.
+
+**Avaliação som por som (opcional):** em Ajustes, "Baixar e ligar" baixa uma vez um modelo de fonemas
+(cerca de 230 MB, `wav2vec2-lv-60-espeak-cv-ft`) que roda no próprio aparelho. Nos exercícios de palavras, o app
+grava a fala, alinha os sons esperados (tirados do IPA) ao áudio e dá uma nota para cada som, apontando trocas
+típicas de brasileiro (th → t, r vibrado, d → dj, "i" a mais no fim). Usa a placa de vídeo (WebGPU) quando existe.
+Para testar no computador: `node scripts/testar-sons.ts` (precisa de áudios em `scripts/audios`).
 
 ## Como rodar no computador
 

@@ -28,6 +28,8 @@ export interface Avaliacao {
   ouvidas: ResultadoOuvida[];
   /** 0 a 100: quão claro o reconhecimento achou a fala (confiança e posição da opção certa) */
   clareza?: number;
+  /** avaliação som por som (quando o modo "sons" está ligado) */
+  sons?: import('../lib/fonemas').ResultadoSons;
 }
 
 /** Interface trocável: no futuro pode virar um serviço externo. */

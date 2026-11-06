@@ -5,6 +5,7 @@ import { ttsNavegador } from '../engines/tts';
 import { ipaDe } from '../content';
 import type { Item } from '../lib/licao';
 import { dicasDaPalavra } from '../lib/sons';
+import { dicaDoSom, nomeDoSom, soaComo, type ResultadoSons } from '../lib/fonemas';
 import { Icone } from '../ui/Icones';
 import { Pronuncia, VoceDisse } from '../ui/Pronuncia';
 import { useMicrofone } from '../ui/useMicrofone';
@@ -45,8 +46,51 @@ function dicasDoResultado(av: Avaliacao, en: string, ipa?: string) {
   return out;
 }
 
+/** Cada som da palavra com a sua nota, e dica para os que não saíram bem. */
+function SonsDaPalavra({ sons, palavra }: { sons: ResultadoSons; palavra: string }) {
+  const ruins = sons.fones.filter((f) => f.nota < 60).sort((a, b) => a.nota - b.nota).slice(0, 2);
+  const cor = (n: number) => (n >= 75 ? 'certo' : n >= 45 ? 'seq' : 'errado');
+  return (
+    <div className="coluna sons">
+      <span className="rotulo">Som por som</span>
+      <div className="fones" lang="en">
+        {sons.fones.map((f, k) => (
+          <span key={k} className={`fone selo ${cor(f.nota)}`} title={`${f.nota}`}>
+            <span className="fone-nome">{nomeDoSom(f.fone)}</span>
+            <span className="fone-nota">{f.nota}</span>
+          </span>
+        ))}
+      </div>
+      {ruins.map((f, k) => {
+        const parece = soaComo(f.ouvido);
+        return (
+          <div key={k} className="som">
+            <div className="linha entre">
+              <strong>Som "{nomeDoSom(f.fone)}"{parece && parece !== nomeDoSom(f.fone) ? `: saiu parecido com "${parece}"` : ''}</strong>
+              <button className="icone-botao" aria-label={`Ouvir ${palavra} devagar`}
+                onClick={() => ttsNavegador.falar(palavra, { devagar: true })}><Icone nome="devagar" tamanho={18} /></button>
+            </div>
+            {dicaDoSom(f.fone) && <p className="pequeno">{dicaDoSom(f.fone)}</p>}
+          </div>
+        );
+      })}
+      {sons.vogalExtra > 0.5 && (
+        <div className="som">
+          <strong>Um "i" a mais no fim</strong>
+          <p className="pequeno">Termine a palavra na consoante, sem acrescentar "i" (como em "bédi" no lugar de "bed").</p>
+        </div>
+      )}
+      <p className="pequeno secundario">Avaliação feita no seu aparelho. É uma estimativa: use como guia para treinar.</p>
+    </div>
+  );
+}
+
 function textoClareza(av: Avaliacao): string {
   if (!av.ouvido) return 'Não ouvi nada. Fale mais perto do microfone.';
+  if (av.sons) {
+    if (av.nota >= 90) return 'Todos os sons saíram bem.';
+    return 'Veja abaixo, som por som, o que pode melhorar.';
+  }
   if (av.clareza !== undefined && av.clareza < 85) {
     return 'O app chegou nas palavras, mas teve dúvida no som. Capriche nos sons das dicas abaixo.';
   }
@@ -67,8 +111,8 @@ export function CartaoResultado({ av, en, fala, dica, longo, ipa }: { av: Avalia
         </div>
       </div>
       {temErro && <Pronuncia en={en} fala={fala} resultado={av.palavras} longo={longo} />}
-      <VoceDisse ouvidas={av.ouvidas} />
-      {sons.length > 0 && (
+      {av.sons ? (av.ouvido && <SonsDaPalavra sons={av.sons} palavra={en} />) : <VoceDisse ouvidas={av.ouvidas} />}
+      {!av.sons && sons.length > 0 && (
         <div className="coluna sons">
           <span className="rotulo">{av.nota >= 90 ? 'Para soar ainda mais natural' : 'Como soar melhor'}</span>
           {sons.map((s, k) => (
@@ -83,10 +127,10 @@ export function CartaoResultado({ av, en, fala, dica, longo, ipa }: { av: Avalia
           ))}
         </div>
       )}
-      {(temErro || dica) && (
+      {(dica || (temErro && !av.sons)) && (
         <div className="cartao dica" style={{ padding: 12 }}>
           <p className="pequeno">
-            <strong>Dica: </strong>
+            <strong>{av.sons ? 'Para lembrar: ' : 'Dica: '}</strong>
             {dica || 'Toque em "Devagar", preste atenção nas palavras marcadas e tente de novo.'}
           </p>
         </div>
@@ -99,6 +143,8 @@ export function CartaoResultado({ av, en, fala, dica, longo, ipa }: { av: Avalia
 export interface FalaCfg {
   esperado: string;
   longo?: boolean;
+  /** símbolos fonéticos: permite a avaliação som por som */
+  ipa?: string;
   aoAvaliar: (a: Avaliacao) => void;
   /** nota da última tentativa; null enquanto a pessoa ainda não falou */
   nota: number | null;
@@ -122,7 +168,7 @@ export function RodapeFala({ cfg, aoContinuar }: { cfg: FalaCfg; aoContinuar: ()
   const ocupado = mic.estado === 'preparando' || mic.estado === 'processando';
   const falar = async () => {
     if (ouvindo) return mic.parar();
-    const av = await mic.ouvir(cfg.esperado, { longo: cfg.longo });
+    const av = await mic.ouvir(cfg.esperado, { longo: cfg.longo, ipa: cfg.ipa });
     if (av) cfg.aoAvaliar(av);
   };
   const continuar = cfg.aoContinuar ?? aoContinuar;
@@ -130,7 +176,7 @@ export function RodapeFala({ cfg, aoContinuar }: { cfg: FalaCfg; aoContinuar: ()
   if (cfg.nota === null || ouvindo || ocupado) {
     let rotulo = cfg.longo ? 'Toque e leia em voz alta' : 'Toque e fale';
     if (ouvindo) rotulo = 'Parar';
-    if (mic.estado === 'preparando') rotulo = mic.baixando !== null ? `Baixando voz: ${mic.baixando}%` : 'Preparando...';
+    if (mic.estado === 'preparando') rotulo = mic.baixando !== null ? `Baixando: ${mic.baixando}%` : 'Preparando...';
     if (mic.estado === 'processando') rotulo = 'Analisando...';
     let ajuda = '';
     if (ouvindo) ajuda = cfg.longo ? 'Ouvindo. Leia tudo e toque em Parar.' : 'Ouvindo. Fale agora.';
@@ -204,7 +250,7 @@ export function ExRepetir({ item, aoAvaliar, rodape }: { item: Extract<Item, { t
         )}
       </div>
       {av && <CartaoResultado av={av} en={item.en} fala={item.fala} dica={dica} longo={longo} ipa={ipa} />}
-      {rodape({ esperado: item.en, longo, nota: av?.nota ?? null, aoAvaliar: (a) => { setAv(a); aoAvaliar(a.nota); } })}
+      {rodape({ esperado: item.en, longo, ipa, nota: av?.nota ?? null, aoAvaliar: (a) => { setAv(a); aoAvaliar(a.nota); } })}
     </>
   );
 }
@@ -233,7 +279,7 @@ export function ExLembrar({ item, aoAvaliar, rodape }: { item: Extract<Item, { t
         )}
       </div>
       {av && <CartaoResultado av={av} en={item.en} fala={item.fala} dica={item.dica} ipa={item.ipa} />}
-      {rodape({ esperado: item.en, nota: av?.nota ?? (mostrar ? 0 : null), aoAvaliar: (a) => { setAv(a); aoAvaliar(a.nota); } })}
+      {rodape({ esperado: item.en, ipa: item.ipa, nota: av?.nota ?? (mostrar ? 0 : null), aoAvaliar: (a) => { setAv(a); aoAvaliar(a.nota); } })}
     </>
   );
 }

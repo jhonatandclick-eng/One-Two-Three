@@ -185,7 +185,7 @@ export function whisperPronto(): boolean {
   return modeloPronto;
 }
 
-async function paraAudio16k(blob: Blob): Promise<Float32Array> {
+export async function paraAudio16k(blob: Blob): Promise<Float32Array> {
   const buf = await blob.arrayBuffer();
   const Ctx = window.AudioContext || (window as any).webkitAudioContext;
   const ctx = new Ctx();

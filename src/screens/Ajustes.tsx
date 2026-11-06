@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { motorSugerido, type MotorId } from '../engines/stt';
+import { prepararSons } from '../engines/sons';
 import { nomeDaVoz } from '../engines/tts';
 import { opcao } from '../lib/plan';
 import {
@@ -10,6 +11,51 @@ import { Icone } from '../ui/Icones';
 import { ColarCodigo, CopiarCodigo } from '../ui/Transferir';
 import { ir } from '../ui/rotas';
 import { TestarMicrofone } from './Microfone';
+
+function AvaliacaoSons() {
+  const e = useEstado();
+  const [pct, setPct] = useState<number | null>(null);
+  const [erro, setErro] = useState('');
+  const ligar = async () => {
+    setErro('');
+    setPct(0);
+    try {
+      await prepararSons((p) => p.status === 'baixando' && setPct(p.pct ?? 0));
+      atualizar((s) => ({ ...s, sons: true }));
+    } catch {
+      setErro('Não deu para baixar ou abrir o modelo neste aparelho. Confira a internet e o espaço livre e tente de novo. Em celulares mais antigos ele pode não caber na memória.');
+    }
+    setPct(null);
+  };
+  return (
+    <div className="cartao">
+      <div className="linha entre">
+        <h3>Avaliação som por som</h3>
+        {e.sons && <span className="selo certo">Ligada</span>}
+      </div>
+      <p className="pequeno secundario">
+        Nos exercícios de palavras, o app mede cada som (o "th", o "r", o "i" a mais no fim...) e mostra o que corrigir.
+        Funciona no próprio aparelho, sem internet depois de baixar.
+      </p>
+      {!e.sons && pct === null && (
+        <>
+          <p className="pequeno"><strong>Baixa cerca de 230 MB uma vez.</strong> Use o Wi-Fi.</p>
+          <button className="botao pequeno suave" onClick={ligar}><Icone nome="baixar" /> Baixar e ligar</button>
+        </>
+      )}
+      {pct !== null && (
+        <div className="coluna">
+          <p className="pequeno">Baixando: {pct}%. Pode continuar usando o app.</p>
+          <div className="barra"><div style={{ width: `${pct}%` }} /></div>
+        </div>
+      )}
+      {e.sons && (
+        <button className="botao pequeno" onClick={() => atualizar((s) => ({ ...s, sons: false }))}>Desligar</button>
+      )}
+      {erro && <p className="pequeno" style={{ color: 'var(--errado)' }} role="status">{erro}</p>}
+    </div>
+  );
+}
 
 function Perfis() {
   const p = usePerfis();
@@ -148,6 +194,8 @@ export function Ajustes() {
         <button className="botao pequeno" onClick={() => setTestando(!testando)}><Icone nome="mic" /> {testando ? 'Fechar teste' : 'Testar microfone'}</button>
         {testando && <TestarMicrofone />}
       </div>
+
+      <AvaliacaoSons />
 
       <div className="cartao">
         <h3>Levar o progresso para outro lugar</h3>
