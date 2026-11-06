@@ -1,0 +1,139 @@
+{
+  "unidades": [
+    {
+      "id": "restaurante",
+      "nome": "No restaurante",
+      "frases": [
+        { "id": "restaurante-f1", "en": "Could we have a table for two, please?", "pt": "Poderíamos ter uma mesa para dois, por favor?", "fala": ["cud", "uí", "rév", "â", "têi-bol", "fór", "tú", "plíz"] },
+        { "id": "restaurante-f2", "en": "I would like the chicken with rice.", "pt": "Eu gostaria do frango com arroz.", "fala": ["ai", "uud", "laik", "dâ", "tchí-ken", "uíth", "rais"] },
+        { "id": "restaurante-f3", "en": "Can we get the check, please?", "pt": "Pode trazer a conta, por favor?", "fala": ["kén", "uí", "guét", "dâ", "tchék", "plíz"] },
+        { "id": "restaurante-f4", "en": "Is the tip included in the bill?", "pt": "A gorjeta está incluída na conta?", "fala": ["iz", "dâ", "tip", "in-clú-did", "in", "dâ", "bil"] }
+      ],
+      "texto": {
+        "titulo": "Jantar com amigos",
+        "en": "Last Friday, I went to a small Italian restaurant with my friends. The waiter was very kind and gave us a table near the window. I ordered pasta with tomato sauce, and my friend asked for a pizza. The food was delicious, but the dessert was even better. At the end, we split the bill and left a good tip.",
+        "pt": "Na sexta passada, fui a um pequeno restaurante italiano com meus amigos. O garçom foi muito gentil e nos deu uma mesa perto da janela. Eu pedi macarrão com molho de tomate, e meu amigo pediu uma pizza. A comida estava deliciosa, mas a sobremesa estava ainda melhor. No final, dividimos a conta e deixamos uma boa gorjeta.",
+        "fala": ["lést", "frai-dêi", "ai", "uént", "tu", "â", "smól", "i-té-li-an", "rés-tâ-rânt", "uíth", "mai", "fréndz", "dâ", "uêi-rer", "uóz", "vé-ri", "kaind", "énd", "guêiv", "âs", "â", "têi-bol", "nír", "dâ", "uín-dou", "ai", "ór-derd", "pás-ta", "uíth", "tâ-mêi-rou", "sós", "énd", "mai", "frénd", "éskt", "fór", "â", "pít-sa", "dâ", "fud", "uóz", "di-lí-xâs", "bât", "dâ", "di-zârt", "uóz", "í-ven", "bé-rer", "ét", "dí", "énd", "uí", "split", "dâ", "bil", "énd", "léft", "â", "gud", "tip"]
+      },
+      "dialogo": {
+        "titulo": "Pedindo a comida",
+        "falas": [
+          { "quem": "app", "en": "Hi, welcome! How many people?", "pt": "Oi, bem-vindo! Quantas pessoas?", "fala": ["rai", "uél-kâm", "rau", "mé-ni", "pí-pol"] },
+          { "quem": "voce", "en": "A table for two, please.", "pt": "Uma mesa para dois, por favor.", "fala": ["â", "têi-bol", "fór", "tú", "plíz"] },
+          { "quem": "app", "en": "Sure. Are you ready to order?", "pt": "Claro. Vocês estão prontos para pedir?", "fala": ["xur", "ar", "iu", "ré-di", "tu", "ór-der"] },
+          { "quem": "voce", "en": "Yes, I would like the fish, please.", "pt": "Sim, eu gostaria do peixe, por favor.", "fala": ["iés", "ai", "uud", "laik", "dâ", "fich", "plíz"] },
+          { "quem": "app", "en": "Great choice. Anything to drink?", "pt": "Ótima escolha. Algo para beber?", "fala": ["grêit", "tchóis", "é-ni-thin", "tu", "drink"] },
+          { "quem": "voce", "en": "Just water, thank you.", "pt": "Só água, obrigado.", "fala": ["djâst", "uó-rer", "thénk", "iu"] }
+        ]
+      }
+    },
+    {
+      "id": "viagem",
+      "nome": "Viagem",
+      "frases": [
+        { "id": "viagem-f1", "en": "Where is the gate for this flight?", "pt": "Onde fica o portão deste voo?", "fala": ["uér", "iz", "dâ", "guêit", "fór", "dis", "flait"] },
+        { "id": "viagem-f2", "en": "I have a reservation under my name.", "pt": "Eu tenho uma reserva no meu nome.", "fala": ["ai", "rév", "â", "ré-zer-vêi-xân", "ân-der", "mai", "nêim"] },
+        { "id": "viagem-f3", "en": "How much is a taxi to the hotel?", "pt": "Quanto custa um táxi até o hotel?", "fala": ["rau", "mâtch", "iz", "â", "ték-si", "tu", "dâ", "rôu-tél"] },
+        { "id": "viagem-f4", "en": "Could you take a picture of us?", "pt": "Você poderia tirar uma foto nossa?", "fala": ["cud", "iu", "têik", "â", "pík-tcher", "óv", "âs"] }
+      ],
+      "texto": {
+        "titulo": "Minha primeira viagem",
+        "en": "Last year, I traveled to New York for the first time. The flight was long, but I watched two movies and slept a little. At the airport, the officer asked me a few questions about my trip. I was nervous, but I answered in English. Then I took a taxi to the hotel. The city was huge, noisy, and beautiful. I want to go back soon.",
+        "pt": "No ano passado, viajei para Nova York pela primeira vez. O voo foi longo, mas assisti a dois filmes e dormi um pouco. No aeroporto, o agente me fez algumas perguntas sobre a viagem. Eu estava nervoso, mas respondi em inglês. Depois peguei um táxi até o hotel. A cidade era enorme, barulhenta e linda. Quero voltar logo.",
+        "fala": ["lést", "iir", "ai", "tré-vold", "tu", "niú", "iórk", "fór", "dâ", "fârst", "taim", "dâ", "flait", "uóz", "lóng", "bât", "ai", "uótcht", "tú", "mú-viz", "énd", "slépt", "â", "lí-rol", "ét", "dí", "ér-pórt", "dí", "ó-fi-ser", "éskt", "mí", "â", "fiú", "kués-tchânz", "â-báut", "mai", "trip", "ai", "uóz", "nâr-vâs", "bât", "ai", "én-serd", "in", "ín-glich", "dén", "ai", "tuk", "â", "ték-si", "tu", "dâ", "rôu-tél", "dâ", "sí-ri", "uóz", "riúdj", "nói-zi", "énd", "biú-ri-ful", "ai", "uónt", "tu", "gôu", "bék", "sun"]
+      },
+      "dialogo": {
+        "titulo": "Chegando ao hotel",
+        "falas": [
+          { "quem": "app", "en": "Good evening. How can I help you?", "pt": "Boa noite. Como posso ajudar?", "fala": ["gud", "ív-nin", "rau", "kén", "ai", "rélp", "iu"] },
+          { "quem": "voce", "en": "I have a reservation for three nights.", "pt": "Eu tenho uma reserva para três noites.", "fala": ["ai", "rév", "â", "ré-zer-vêi-xân", "fór", "thrí", "naits"] },
+          { "quem": "app", "en": "Can I see your passport, please?", "pt": "Posso ver seu passaporte, por favor?", "fala": ["kén", "ai", "sí", "iór", "pés-pórt", "plíz"] },
+          { "quem": "voce", "en": "Sure, here it is.", "pt": "Claro, aqui está.", "fala": ["xur", "rír", "it", "iz"] },
+          { "quem": "app", "en": "Thank you. Breakfast is from seven to ten.", "pt": "Obrigado. O café da manhã é das sete às dez.", "fala": ["thénk", "iu", "brék-fâst", "iz", "frâm", "sé-ven", "tu", "tén"] },
+          { "quem": "voce", "en": "Great. What time is checkout?", "pt": "Ótimo. Que horas é o check-out?", "fala": ["grêit", "uót", "taim", "iz", "tchék-áut"] }
+        ]
+      }
+    },
+    {
+      "id": "trabalho",
+      "nome": "Trabalho",
+      "frases": [
+        { "id": "trabalho-f1", "en": "I will send you the report this afternoon.", "pt": "Vou te enviar o relatório hoje à tarde.", "fala": ["ai", "uil", "sénd", "iu", "dâ", "ri-pórt", "dis", "éf-ter-nun"] },
+        { "id": "trabalho-f2", "en": "Can we schedule a meeting for Monday?", "pt": "Podemos marcar uma reunião para segunda?", "fala": ["kén", "uí", "ské-djul", "â", "mí-rin", "fór", "mân-dêi"] },
+        { "id": "trabalho-f3", "en": "I am working on a new project.", "pt": "Estou trabalhando em um projeto novo.", "fala": ["ai", "ém", "uãr-kin", "ón", "â", "niú", "pró-djékt"] },
+        { "id": "trabalho-f4", "en": "Sorry, could you repeat that, please?", "pt": "Desculpe, você poderia repetir, por favor?", "fala": ["sá-ri", "cud", "iu", "ri-pít", "dét", "plíz"] }
+      ],
+      "texto": {
+        "titulo": "Uma segunda-feira corrida",
+        "en": "On Monday mornings, my office is always busy. I arrive at eight thirty and check my emails first. At ten, we have a team meeting to talk about our goals for the week. After lunch, I work on my projects and answer calls from clients. Sometimes I stay late, but I try to leave before six. A good routine helps me stay calm.",
+        "pt": "Nas manhãs de segunda, meu escritório está sempre movimentado. Chego às oito e meia e confiro meus e-mails primeiro. Às dez, temos uma reunião de equipe para falar sobre nossas metas da semana. Depois do almoço, trabalho nos meus projetos e atendo ligações de clientes. Às vezes fico até tarde, mas tento sair antes das seis. Uma boa rotina me ajuda a ficar calmo.",
+        "fala": ["ón", "mân-dêi", "mór-ninz", "mai", "ó-fis", "iz", "ól-uêiz", "bí-zi", "ai", "â-raiv", "ét", "êit", "thâr-ri", "énd", "tchék", "mai", "í-mêilz", "fârst", "ét", "tén", "uí", "rév", "â", "tím", "mí-rin", "tu", "tók", "â-báut", "áur", "gôulz", "fór", "dâ", "uík", "éf-ter", "lãntch", "ai", "uãrk", "ón", "mai", "pró-djékts", "énd", "én-ser", "cólz", "frâm", "clái-ents", "sâm-taimz", "ai", "stêi", "lêit", "bât", "ai", "trai", "tu", "lív", "bi-fór", "siks", "â", "gud", "ru-tín", "rélps", "mí", "stêi", "cám"]
+      },
+      "dialogo": {
+        "titulo": "Conversa com a chefe",
+        "falas": [
+          { "quem": "app", "en": "Hi, do you have a minute?", "pt": "Oi, você tem um minuto?", "fala": ["rai", "du", "iu", "rév", "â", "mí-nit"] },
+          { "quem": "voce", "en": "Sure, what do you need?", "pt": "Claro, do que você precisa?", "fala": ["xur", "uót", "du", "iu", "níd"] },
+          { "quem": "app", "en": "Can you finish the report by Friday?", "pt": "Você consegue terminar o relatório até sexta?", "fala": ["kén", "iu", "fí-nich", "dâ", "ri-pórt", "bai", "frai-dêi"] },
+          { "quem": "voce", "en": "Yes, I can send it on Thursday.", "pt": "Sim, posso enviar na quinta.", "fala": ["iés", "ai", "kén", "sénd", "it", "ón", "thârz-dêi"] },
+          { "quem": "app", "en": "Perfect. Let me know if you need help.", "pt": "Perfeito. Me avise se precisar de ajuda.", "fala": ["pâr-fékt", "lét", "mí", "nôu", "if", "iu", "níd", "rélp"] },
+          { "quem": "voce", "en": "Thanks, I will.", "pt": "Obrigado, aviso sim.", "fala": ["thénks", "ai", "uil"] }
+        ]
+      }
+    },
+    {
+      "id": "compras",
+      "nome": "Compras",
+      "frases": [
+        { "id": "compras-f1", "en": "How much does this jacket cost?", "pt": "Quanto custa esta jaqueta?", "fala": ["rau", "mâtch", "dâz", "dis", "djé-kit", "cóst"] },
+        { "id": "compras-f2", "en": "Do you have this in a bigger size?", "pt": "Vocês têm isto num tamanho maior?", "fala": ["du", "iu", "rév", "dis", "in", "â", "bí-guer", "saiz"] },
+        { "id": "compras-f3", "en": "Can I pay by credit card?", "pt": "Posso pagar com cartão de crédito?", "fala": ["kén", "ai", "pêi", "bai", "kré-dit", "kárd"] },
+        { "id": "compras-f4", "en": "I am just looking, thank you.", "pt": "Só estou olhando, obrigado.", "fala": ["ai", "ém", "djâst", "lú-kin", "thénk", "iu"] }
+      ],
+      "texto": {
+        "titulo": "Um presente para a irmã",
+        "en": "Yesterday I went to the mall to buy a birthday gift for my sister. She loves books, so I visited a big bookstore first. The store had thousands of books, and I needed help. A friendly employee showed me some new novels. I chose one about a young woman who travels the world. It was not expensive, and they wrapped it for free.",
+        "pt": "Ontem fui ao shopping comprar um presente de aniversário para minha irmã. Ela ama livros, então visitei primeiro uma livraria grande. A loja tinha milhares de livros, e eu precisei de ajuda. Um funcionário simpático me mostrou alguns romances novos. Escolhi um sobre uma jovem que viaja pelo mundo. Não era caro, e embrulharam de graça.",
+        "fala": ["iés-ter-dêi", "ai", "uént", "tu", "dâ", "mól", "tu", "bai", "â", "bârth-dêi", "guift", "fór", "mai", "sis-ter", "xi", "lâvz", "buks", "sôu", "ai", "ví-zi-tid", "â", "big", "buk-stór", "fârst", "dâ", "stór", "réd", "tháu-zândz", "óv", "buks", "énd", "ai", "ní-did", "rélp", "â", "frénd-li", "im-plói-í", "xôud", "mí", "sâm", "niú", "nó-volz", "ai", "tchôuz", "uân", "â-báut", "â", "iâng", "uú-man", "rú", "tré-volz", "dâ", "uârld", "it", "uóz", "nót", "iks-pén-siv", "énd", "dêi", "répt", "it", "fór", "frí"]
+      },
+      "dialogo": {
+        "titulo": "Comprando tênis",
+        "falas": [
+          { "quem": "app", "en": "Hello! Can I help you find something?", "pt": "Olá! Posso ajudar a encontrar algo?", "fala": ["rê-lôu", "kén", "ai", "rélp", "iu", "faind", "sâm-thin"] },
+          { "quem": "voce", "en": "Yes, I am looking for running shoes.", "pt": "Sim, estou procurando tênis de corrida.", "fala": ["iés", "ai", "ém", "lú-kin", "fór", "râ-nin", "xuz"] },
+          { "quem": "app", "en": "What size do you wear?", "pt": "Qual número você usa?", "fala": ["uót", "saiz", "du", "iu", "uér"] },
+          { "quem": "voce", "en": "I wear a size nine.", "pt": "Eu uso tamanho nove.", "fala": ["ai", "uér", "â", "saiz", "nain"] },
+          { "quem": "app", "en": "Here you go. They are on sale today.", "pt": "Aqui está. Estão em promoção hoje.", "fala": ["rír", "iu", "gôu", "dêi", "ar", "ón", "sêil", "tu-dêi"] },
+          { "quem": "voce", "en": "Great, I will take them.", "pt": "Ótimo, vou levar.", "fala": ["grêit", "ai", "uil", "têik", "dém"] }
+        ]
+      }
+    },
+    {
+      "id": "apresentacoes",
+      "nome": "Apresentações",
+      "frases": [
+        { "id": "apresentacoes-f1", "en": "Let me introduce myself.", "pt": "Deixe-me me apresentar.", "fala": ["lét", "mí", "in-tro-dús", "mai-sélf"] },
+        { "id": "apresentacoes-f2", "en": "I am from Brazil, and I live in Curitiba.", "pt": "Eu sou do Brasil e moro em Curitiba.", "fala": ["ai", "ém", "frâm", "brâ-zíl", "énd", "ai", "liv", "in", "cu-ri-tí-ba"] },
+        { "id": "apresentacoes-f3", "en": "I have been working as a nurse for five years.", "pt": "Eu trabalho como enfermeira há cinco anos.", "fala": ["ai", "rév", "bín", "uãr-kin", "éz", "â", "nârs", "fór", "faiv", "iirz"] },
+        { "id": "apresentacoes-f4", "en": "In my free time, I like to cook and travel.", "pt": "No meu tempo livre, gosto de cozinhar e viajar.", "fala": ["in", "mai", "frí", "taim", "ai", "laik", "tu", "cuk", "énd", "tré-vol"] }
+      ],
+      "texto": {
+        "titulo": "Sobre mim",
+        "en": "Hi, my name is Marina. I am thirty years old and I live in Curitiba with my husband and our dog. I work as a graphic designer at a small company. I started studying English because I want to work with international clients. Every day, I practice for twenty minutes on my phone. My dream is to speak English with confidence.",
+        "pt": "Oi, meu nome é Marina. Tenho trinta anos e moro em Curitiba com meu marido e nosso cachorro. Trabalho como designer gráfica em uma pequena empresa. Comecei a estudar inglês porque quero trabalhar com clientes internacionais. Todo dia pratico vinte minutos no celular. Meu sonho é falar inglês com confiança.",
+        "fala": ["rai", "mai", "nêim", "iz", "ma-rí-na", "ai", "ém", "thâr-ri", "iirz", "ôuld", "énd", "ai", "liv", "in", "cu-ri-tí-ba", "uíth", "mai", "râz-bând", "énd", "áur", "dóg", "ai", "uãrk", "éz", "â", "gré-fik", "di-zái-ner", "ét", "â", "smól", "câm-pa-ni", "ai", "stár-tid", "stâ-di-in", "ín-glich", "bi-cóz", "ai", "uónt", "tu", "uãrk", "uíth", "in-ter-né-xâ-nol", "clái-ents", "é-vri", "dêi", "ai", "prék-tis", "fór", "tuén-ti", "mí-nits", "ón", "mai", "fôun", "mai", "drím", "iz", "tu", "spík", "ín-glich", "uíth", "cón-fi-dens"]
+      },
+      "dialogo": {
+        "titulo": "Conhecendo alguém",
+        "falas": [
+          { "quem": "app", "en": "Hi, I don't think we've met. I'm Jake.", "pt": "Oi, acho que ainda não nos conhecemos. Sou o Jake.", "fala": ["rai", "ai", "dôunt", "think", "uív", "mét", "aim", "djêik"] },
+          { "quem": "voce", "en": "Nice to meet you, Jake. I'm Lucas.", "pt": "Prazer, Jake. Sou o Lucas.", "fala": ["nais", "tu", "mít", "iu", "djêik", "aim", "lú-kâs"] },
+          { "quem": "app", "en": "Nice to meet you too. Where are you from?", "pt": "Prazer também. De onde você é?", "fala": ["nais", "tu", "mít", "iu", "tú", "uér", "ar", "iu", "frâm"] },
+          { "quem": "voce", "en": "I'm from Brazil. I'm here for work.", "pt": "Sou do Brasil. Estou aqui a trabalho.", "fala": ["aim", "frâm", "brâ-zíl", "aim", "rír", "fór", "uãrk"] },
+          { "quem": "app", "en": "Cool! What do you do?", "pt": "Legal! O que você faz?", "fala": ["cul", "uót", "du", "iu", "du"] },
+          { "quem": "voce", "en": "I work in marketing.", "pt": "Eu trabalho com marketing.", "fala": ["ai", "uãrk", "in", "már-ke-tin"] }
+        ]
+      }
+    }
+  ]
+}
