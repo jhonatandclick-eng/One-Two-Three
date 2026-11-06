@@ -3,12 +3,14 @@ import { UNIDADES_INICIANTE } from '../content';
 import { atualizar } from '../lib/store';
 import { Logo } from '../ui/Logo';
 import { Pronuncia } from '../ui/Pronuncia';
+import { ColarCodigo } from '../ui/Transferir';
 import { ir } from '../ui/rotas';
 import { TestarMicrofone } from './Microfone';
 import { EscolherPlano } from './Plano';
 
 export function PrimeiroUso() {
   const [passo, setPasso] = useState(0);
+  const [jaTenho, setJaTenho] = useState(false);
   const terminar = () => {
     atualizar((e) => ({ ...e, primeiroUsoFeito: true }));
     ir(`/licao/iniciante/${UNIDADES_INICIANTE[0].id}`);
@@ -33,6 +35,18 @@ export function PrimeiroUso() {
             <p className="pequeno">Grátis, sem login e sem anúncios. Seu progresso fica guardado só neste aparelho.</p>
           </div>
           <button className="botao principal cheio" onClick={() => setPasso(1)}>Começar</button>
+          {!jaTenho ? (
+            <button className="link" onClick={() => setJaTenho(true)}>Já usei o app no Safari ou em outro celular</button>
+          ) : (
+            <div className="cartao">
+              <h3>Trazer o seu progresso</h3>
+              <p className="pequeno secundario">
+                Onde você já estudava (por exemplo, no Safari), vá em <strong>Ajustes › Copiar código do progresso</strong>.
+                Depois volte aqui e toque em colar.
+              </p>
+              <ColarCodigo aoAplicar={() => ir('/')} />
+            </div>
+          )}
         </>
       )}
       {passo === 1 && <EscolherPlano textoBotao="Continuar" aoSalvar={() => setPasso(2)} />}

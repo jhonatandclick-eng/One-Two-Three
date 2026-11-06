@@ -7,6 +7,11 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
   base: './',
   worker: { format: 'es' },
+  define: {
+    __VERSAO__: JSON.stringify(
+      new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+    ),
+  },
   plugins: [
     react(),
     VitePWA({

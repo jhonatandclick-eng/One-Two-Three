@@ -85,6 +85,15 @@ Primeira vez: no repositório do GitHub, vá em **Settings › Pages › Source:
 4. (Opcional) **Compartilhar › Adicionar à Tela de Início**. Pelo atalho, o app usa o reconhecimento que roda no
    próprio aparelho (baixa uma vez, cerca de 40 MB).
 
+**Progresso no atalho:** no iPhone, o Safari e o atalho guardam o progresso separados. Antes de passar para o atalho,
+toque em **Ajustes › Copiar código do progresso** no Safari; ao abrir o atalho, toque em
+**"Já usei o app no Safari"** e cole. O mesmo código serve para levar o progresso para outro celular.
+
+**Atualizações:** o app procura versão nova sempre que é aberto e se atualiza sozinho. Não apague o atalho para
+atualizar: apagar o atalho apaga o progresso dele. A data da versão aparece no fim de Ajustes.
+
+**Mais de uma pessoa no mesmo aparelho:** em **Ajustes › Quem está estudando**, crie um perfil para cada pessoa.
+
 ## Por dentro (para quem programa)
 
 - Vite + React + TypeScript, PWA com `vite-plugin-pwa`.

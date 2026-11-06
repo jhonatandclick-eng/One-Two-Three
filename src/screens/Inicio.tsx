@@ -1,8 +1,10 @@
 import { hoje } from '../lib/dates';
 import { licaoAtual, intermediarioLiberado, mediaIniciante, revisoesVencidas } from '../lib/licao';
 import { opcao, semanaAtual } from '../lib/plan';
-import { sequencia, useEstado } from '../lib/store';
+import { ehIphone, modoTelaDeInicio } from '../engines/stt';
+import { atualizar, perfilAtual, sequencia, temProgresso, useEstado } from '../lib/store';
 import { Icone } from '../ui/Icones';
+import { CopiarCodigo } from '../ui/Transferir';
 import { Logo } from '../ui/Logo';
 import { ir } from '../ui/rotas';
 
@@ -21,6 +23,8 @@ export function Inicio() {
   const atual = licaoAtual(e);
   const revisar = revisoesVencidas(e).length;
   const liberado = intermediarioLiberado(e);
+  const perfil = perfilAtual();
+  const avisoAtalho = ehIphone() && !modoTelaDeInicio() && !e.dicaAtalhoOculta && temProgresso(e);
   const semana = e.plano ? semanaAtual(e.plano.inicio, hoje()) : 1;
   const linhaPlano = plano.semanas
     ? `Plano de ${plano.rotulo} · semana ${Math.min(semana, plano.semanas)} de ${plano.semanas}`
@@ -31,11 +35,23 @@ export function Inicio() {
       <Logo tamanho={24} />
       <div className="linha entre">
         <div className="coluna" style={{ gap: 2 }}>
-          <span className="secundario">{saudacao()}!</span>
+          <span className="secundario">{saudacao()}{perfil.nome ? `, ${perfil.nome}` : ''}!</span>
           <h1>Vamos praticar?</h1>
         </div>
         <span className="selo seq" aria-label={`Sequência de ${seq} dias`}><Icone nome="fogo" tamanho={18} /> {seq} {seq === 1 ? 'dia' : 'dias'}</span>
       </div>
+
+      {avisoAtalho && (
+        <div className="cartao dica">
+          <div className="linha entre">
+            <strong>Vai usar pelo atalho da Tela de Início?</strong>
+            <button className="icone-botao" aria-label="Fechar aviso" style={{ background: 'transparent', border: 'none' }}
+              onClick={() => atualizar((s) => ({ ...s, dicaAtalhoOculta: true }))}><Icone nome="fechar" tamanho={18} /></button>
+          </div>
+          <p className="pequeno">No iPhone, o atalho começa sem o progresso do Safari. Copie o código agora e, ao abrir pelo atalho, toque em "Já usei o app no Safari".</p>
+          <CopiarCodigo classe="botao pequeno suave" />
+        </div>
+      )}
 
       <div className="cartao">
         <div className="linha entre">

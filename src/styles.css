@@ -248,6 +248,13 @@ button { font: inherit; color: inherit; }
 .boas-vindas { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
 .boas-vindas .grande { font-size: 34px; }
 
+.campo.codigo { font-family: ui-monospace, Menlo, monospace; font-size: 12px; word-break: break-all; resize: vertical; }
+.perfil { display: flex; align-items: center; gap: 10px; min-height: 52px; }
+.perfil .avatar {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--destaque-suave); color: var(--texto-destaque);
+  display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;
+}
+
 .bloqueado { opacity: 0.7; }
 a { color: var(--texto-destaque); }
 .link { background: none; border: none; color: var(--texto-destaque); font-weight: 700; padding: 0; cursor: pointer; text-decoration: underline; min-height: 44px; }

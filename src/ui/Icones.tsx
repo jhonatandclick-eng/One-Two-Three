@@ -21,6 +21,7 @@ const caminhos: Record<string, JSX.Element> = {
   subir: <><path d="M12 21V9" /><path d="M7 14l5-5 5 5" /><path d="M5 3h14" /></>,
   lixo: <><path d="M4 7h16" /><path d="M9 7V4h6v3" /><path d="M6 7l1 13h10l1-13" /></>,
   check: <path d="M5 12l5 5 9-10" />,
+  editar: <><path d="M4 20h4L19 9l-4-4L4 16z" /><path d="M13 7l4 4" /></>,
   calendario: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18" /><path d="M8 3v4" /><path d="M16 3v4" /></>,
   conversa: <path d="M4 5h16v11H9l-5 4z" />,
   teclado: <><rect x="2" y="6" width="20" height="12" rx="2" /><path d="M6 10h0M10 10h0M14 10h0M18 10h0M7 14h10" /></>,
